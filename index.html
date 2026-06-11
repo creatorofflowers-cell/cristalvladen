@@ -13,8 +13,9 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
-        /* Плавное затухание для карточек */
-        .product-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        /* Плавная анимация для эффекта Lookbook */
+        .product-card { transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-img { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease; }
     </style>
 </head>
 <body class="bg-[#0c0a09] text-stone-200 antialiased selection:bg-amber-500/20 selection:text-amber-200">
@@ -54,7 +55,7 @@
         </div>
     </header>
 
-    <!-- ЭКРАН 1: ГЛАВНЫЙ (HERO) -->
+    <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="relative min-h-[calc(100vh-80px)] flex items-center justify-center px-4 sm:px-6">
         <div class="absolute w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-amber-500/5 blur-[150px] rounded-full top-1/4 left-1/12 -z-10"></div>
         <div class="absolute w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] bg-stone-500/5 blur-[150px] rounded-full bottom-1/4 right-1/12 -z-10"></div>
@@ -75,7 +76,7 @@
         </div>
     </section>
 
-    <!-- ЭКРАН 2: КАТАЛОГ С ИНТЕРАКТИВНЫМ ПОДБОРОМ ПО ЭФФЕКТУ -->
+    <!-- КАТАЛОГ С РЕАЛЬНЫМИ ФОТО -->
     <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 py-28 border-t border-stone-900/60">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
             <div>
@@ -83,7 +84,6 @@
                 <h2 class="font-serif text-3xl sm:text-5xl font-light text-stone-100">Что вы хотите притянуть?</h2>
             </div>
             
-            <!-- Вместо тегов — выбор по внутреннему запросу клиента -->
             <div id="vibe-container" class="flex flex-wrap gap-2 text-xs uppercase tracking-wider">
                 <button data-vibe="all" class="vibe-btn bg-stone-900 border border-amber-300/40 text-amber-200 px-5 py-2.5 transition-all cursor-pointer">Показать всё</button>
                 <button data-vibe="calm" class="vibe-btn bg-stone-900/20 border border-stone-800 text-stone-400 hover:border-stone-700 hover:text-stone-200 px-5 py-2.5 transition-all cursor-pointer">🧘 Баланс и спокойствие</button>
@@ -92,69 +92,78 @@
             </div>
         </div>
 
-        <!-- Сетка товаров -->
+        <!-- Сетка товаров с унифицированным стилем изображений -->
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
             
-            <!-- Товар 1 -->
+            <!-- Товар 1 (Фото 36.jpg) -->
             <div class="product-card group" data-vibes="calm focus">
-                <div class="aspect-square bg-stone-900 overflow-hidden relative mb-6 border border-stone-900/40">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=600&auto=format&fit=crop" 
-                         alt="Браслет Чистая Энергия" 
-                         class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                    <span class="absolute top-4 left-4 bg-[#0c0a09]/90 backdrop-blur-md border border-stone-800 text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 text-amber-200">
-                        В наличии
+                <div class="aspect-square bg-stone-950 overflow-hidden relative mb-6 border border-stone-900/80 shadow-2xl">
+                    <!-- Изображение 36.jpg с фильтрами сглаживания фона -->
+                    <img src="36.jpg" 
+                         alt="Браслет Аметист и Кальцит" 
+                         class="product-img w-full h-full object-cover contrast-110 brightness-85 saturate-90 group-hover:contrast-100 group-hover:brightness-100 group-hover:saturate-100 group-hover:scale-105">
+                    <!-- Затемняющий Lookbook-градиент для скрытия швов фона -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0c0a09]/50 via-transparent to-[#0c0a09]/30 mix-blend-multiply pointer-events-none"></div>
+                    <span class="absolute top-4 left-4 bg-[#0c0a09]/90 backdrop-blur-md border border-stone-800/80 text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 text-amber-200">
+                        Эксклюзив
                     </span>
                 </div>
                 <div class="flex items-start justify-between px-1">
                     <div>
-                        <h3 class="font-serif text-2xl text-stone-200 group-hover:text-amber-200 transition-colors duration-300 font-light product-title">Браслет «Чистая Энергия»</h3>
-                        <p class="text-xs text-stone-500 mt-1.5">Горный хрусталь, Сапфирин</p>
+                        <h3 class="font-serif text-2xl text-stone-200 group-hover:text-amber-200 transition-colors duration-300 font-light product-title">Браслет «Аметист и Кальцит»</h3>
+                        <p class="text-xs text-stone-500 mt-1.5">Аметист, Кальцит, Ювелирная фурнитура</p>
                     </div>
-                    <span class="text-sm font-light text-stone-300 pt-1">4 500 ₽</span>
+                    <span class="text-sm font-light text-stone-300 pt-1">4 900 ₽</span>
                 </div>
                 <a href="#" target="_blank" class="order-tg-btn mt-5 w-full text-center border border-stone-800 text-stone-400 group-hover:border-amber-300/40 group-hover:text-amber-200 text-[11px] tracking-[0.2em] uppercase py-3.5 transition-all duration-300 block">
                     Заказать через Telegram
                 </a>
             </div>
 
-            <!-- Товар 2 -->
-            <div class="product-card group" data-vibes="calm">
-                <div class="aspect-square bg-stone-900 overflow-hidden relative mb-6 border border-stone-900/40">
-                    <img src="https://images.unsplash.com/photo-1615655096345-61a54750068d?q=80&w=600&auto=format&fit=crop" 
-                         alt="Браслет Морской Бриз" 
-                         class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                    <span class="absolute top-4 left-4 bg-[#0c0a09]/90 backdrop-blur-md border border-stone-800 text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 text-amber-200">
+            <!-- Товар 2 (Фото 37.jpg) -->
+            <div class="product-card group" data-vibes="power">
+                <div class="aspect-square bg-stone-950 overflow-hidden relative mb-6 border border-stone-900/80 shadow-2xl">
+                    <!-- Изображение 37.jpg с фильтрами сглаживания фона -->
+                    <img src="37.jpg" 
+                         alt="Браслет Темная Энергия" 
+                         class="product-img w-full h-full object-cover contrast-110 brightness-85 saturate-90 group-hover:contrast-100 group-hover:brightness-100 group-hover:saturate-100 group-hover:scale-105">
+                    <!-- Затемняющий Lookbook-градиент для скрытия швов фона -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0c0a09]/50 via-transparent to-[#0c0a09]/30 mix-blend-multiply pointer-events-none"></div>
+                    <span class="absolute top-4 left-4 bg-[#0c0a09]/90 backdrop-blur-md border border-stone-800/80 text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 text-amber-200">
                         В наличии
                     </span>
                 </div>
                 <div class="flex items-start justify-between px-1">
                     <div>
-                        <h3 class="font-serif text-2xl text-stone-200 group-hover:text-amber-200 transition-colors duration-300 font-light product-title">Браслет «Морской бриз»</h3>
-                        <p class="text-xs text-stone-500 mt-1.5">Аквамарин, Сапфирин</p>
+                        <h3 class="font-serif text-2xl text-stone-200 group-hover:text-amber-200 transition-colors duration-300 font-light product-title">Браслет «Глубокий Оберег»</h3>
+                        <p class="text-xs text-stone-500 mt-1.5">Шунгит, Дымчатый кварц, Пирит</p>
                     </div>
-                    <span class="text-sm font-light text-stone-300 pt-1">5 200 ₽</span>
+                    <span class="text-sm font-light text-stone-300 pt-1">5 400 ₽</span>
                 </div>
                 <a href="#" target="_blank" class="order-tg-btn mt-5 w-full text-center border border-stone-800 text-stone-400 group-hover:border-amber-300/40 group-hover:text-amber-200 text-[11px] tracking-[0.2em] uppercase py-3.5 transition-all duration-300 block">
                     Заказать через Telegram
                 </a>
             </div>
 
-            <!-- Товар 3 -->
-            <div class="product-card group" data-vibes="power focus">
-                <div class="aspect-square bg-stone-900 overflow-hidden relative mb-6 border border-stone-900/40">
-                    <img src="https://images.unsplash.com/photo-1551269901-5c5e14c30d74?q=80&w=600&auto=format&fit=crop" 
-                         alt="Браслет Амулет" 
-                         class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out">
-                    <span class="absolute top-4 left-4 bg-[#0c0a09]/90 backdrop-blur-md border border-stone-800 text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 text-stone-400">
+            <!-- Товар 3 (Фото 38.jpg) -->
+            <div class="product-card group" data-vibes="calm focus">
+                <div class="aspect-square bg-stone-950 overflow-hidden relative mb-6 border border-stone-900/80 shadow-2xl">
+                    <!-- Изображение 38.jpg с фильтрами сглаживания фона -->
+                    <img src="38.jpg" 
+                         alt="Браслет Триада Минералов" 
+                         class="product-img w-full h-full object-cover contrast-110 brightness-85 saturate-90 group-hover:contrast-100 group-hover:brightness-100 group-hover:saturate-100 group-hover:scale-105">
+                    <!-- Затемняющий Lookbook-градиент для скрытия швов фона -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0c0a09]/50 via-transparent to-[#0c0a09]/30 mix-blend-multiply pointer-events-none"></div>
+                    <span class="absolute top-4 left-4 bg-[#0c0a09]/90 backdrop-blur-md border border-stone-800/80 text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 text-stone-400">
                         Под заказ
                     </span>
                 </div>
                 <div class="flex items-start justify-between px-1">
                     <div>
-                        <h3 class="font-serif text-2xl text-stone-200 group-hover:text-amber-200 transition-colors duration-300 font-light product-title">Браслет «Амулет»</h3>
-                        <p class="text-xs text-stone-500 mt-1.5">Горный хрусталь, Дымчатый кварц</p>
+                        <h3 class="font-serif text-2xl text-stone-200 group-hover:text-amber-200 transition-colors duration-300 font-light product-title">Браслет «Триада Гармонии»</h3>
+                        <p class="text-xs text-stone-500 mt-1.5">Берилл, Горный хрусталь, Лабрадор</p>
                     </div>
-                    <span class="text-sm font-light text-stone-300 pt-1">4 800 ₽</span>
+                    <span class="text-sm font-light text-stone-300 pt-1">5 800 ₽</span>
                 </div>
                 <a href="#" target="_blank" class="order-tg-btn mt-5 w-full text-center border border-stone-800 text-stone-400 group-hover:border-amber-300/40 group-hover:text-amber-200 text-[11px] tracking-[0.2em] uppercase py-3.5 transition-all duration-300 block">
                     Заказать через Telegram
@@ -164,11 +173,10 @@
         </div>
     </section>
 
-    <!-- ЭКРАН 3: О КАМНЯХ И ПОДБОР РАЗМЕРА -->
+    <!-- О КАМНЯХ И РАЗМЕРАХ -->
     <section class="border-t border-stone-900/60 bg-[#090706]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-28 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             
-            <!-- О камнях -->
             <div id="about" class="space-y-6">
                 <span class="text-[10px] tracking-[0.3em] uppercase text-amber-400 block">Философия</span>
                 <h3 class="font-serif text-3xl sm:text-4xl font-light text-stone-100">Сила натуральных минералов</h3>
@@ -181,7 +189,6 @@
                 </div>
             </div>
 
-            <!-- Размер запястья -->
             <div id="size" class="space-y-6 lg:border-l lg:border-stone-900 lg:pl-16">
                 <span class="text-[10px] tracking-[0.3em] uppercase text-stone-500 block">Гид по размерам</span>
                 <h3 class="font-serif text-3xl sm:text-4xl font-light text-stone-100">Как узнать свой размер?</h3>
@@ -196,7 +203,7 @@
         </div>
     </section>
 
-    <!-- ЭКРАН 4: КОНТАКТЫ И ИНФО-ПОДВАЛ -->
+    <!-- ФУТЕР -->
     <footer id="contacts" class="border-t border-stone-900/60 bg-[#0c0a09] py-20 text-stone-400 font-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
             
@@ -229,7 +236,7 @@
         </div>
     </footer>
 
-    <!-- МОДАЛЬНОЕ ОКНО: ПРАВИЛА УХОДА -->
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div id="care-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/80 backdrop-blur-md">
         <div class="bg-[#12100e] border border-stone-800 max-w-lg w-full p-6 sm:p-8 space-y-6 relative rounded-none shadow-2xl">
             <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-stone-500 hover:text-stone-200 focus:outline-none cursor-pointer">
@@ -251,7 +258,7 @@
         </div>
     </div>
 
-    <!-- ИНТЕРАКТИВНЫЙ ОЖИВШИЙ СЦЕНАРИЙ -->
+    <!-- СКРИПТЫ -->
     <script>
         const TELEGRAM_USERNAME = "crystal_order_tg";
 
@@ -270,13 +277,12 @@
             document.body.style.overflow = show ? 'hidden' : '';
         }
 
-        // Интерактивное выделение карточек по вайбу вместо скучной фильтрации
+        // Интерактивное выделение по вайбу
         const vibeButtons = document.querySelectorAll('.vibe-btn');
         const productCards = document.querySelectorAll('.product-card');
 
         vibeButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Переключаем стили кнопок
                 vibeButtons.forEach(b => {
                     b.classList.remove('bg-stone-900', 'border-amber-300/40', 'text-amber-200');
                     b.classList.add('bg-stone-900/20', 'border-stone-800', 'text-stone-400');
@@ -290,30 +296,27 @@
                     const cardVibes = card.getAttribute('data-vibes');
                     
                     if (targetVibe === 'all') {
-                        // Возвращаем все карточки в нормальное яркое состояние
                         card.style.opacity = '1';
                         card.style.transform = 'scale(1)';
                         card.style.filter = 'none';
                     } else if (cardVibes.includes(targetVibe)) {
-                        // Подсвечиваем подходящие
                         card.style.opacity = '1';
                         card.style.transform = 'scale(1.02)';
                         card.style.filter = 'none';
                     } else {
-                        // Мягко приглушаем неподходящие, создавая акцент на нужных
-                        card.style.opacity = '0.25';
+                        card.style.opacity = '0.2';
                         card.style.transform = 'scale(0.98)';
-                        card.style.filter = 'blur(1px)';
+                        card.style.filter = 'blur(2px) grayscale(50%)';
                     }
                 });
             });
         });
 
-        // Генерация красивых ссылок для кнопок заказа
+        // Динамические ссылки под реальные названия товаров
         productCards.forEach(card => {
             const title = card.querySelector('.product-title').innerText;
             const orderBtn = card.querySelector('.order-tg-btn');
-            const message = encodeURIComponent(`Привет! Хочу заказать авторский браслет "${title}". Поможешь подобрать размер?`);
+            const message = encodeURIComponent(`Привет! Очень зацепил браслет "${title}" с реальных фото. Хочу заказать под свои параметры. Поможешь сориентироваться по размеру?`);
             orderBtn.setAttribute('href', `https://t.me/${TELEGRAM_USERNAME}?text=${message}`);
         });
     </script>
